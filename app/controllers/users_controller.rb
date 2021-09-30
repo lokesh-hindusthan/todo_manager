@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render plain: User.order(:id).map { |user| user.to_pleasant_string }.join("\n")
+    render plain: User.order(:id).map { |users| users.to_pleasant_string }.join("\n")
   end
 
   def show
@@ -34,6 +34,10 @@ class UsersController < ApplicationController
   def login
     user_email = params[:user_email]
     user_password = params[:user_password]
+    #find_by(arg, *args)
+    #Finds the first record matching the specified conditions. 
+    #There is no implied ordering so if order matters, you should specify it yourself.
+    #If no record is found, returns nil
     user_response = User.find_by(user_email: user_email, user_password: user_password)
     render plain: user_response
   end
