@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render plain: User.order.all.map {|users| users.to_pleasant_string}.join("\n")
+    render plain: User.order(:id).map { |user| user.to_pleasant_string }.join("\n")
   end
 
   def show
