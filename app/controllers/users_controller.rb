@@ -34,4 +34,5 @@ class UsersController < ApplicationController
     user = User.find_by(user_email: email, user_password: password)
     render plain: user.present?
   end
+  
 end
