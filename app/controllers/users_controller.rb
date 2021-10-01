@@ -27,10 +27,6 @@ class UsersController < ApplicationController
    def login
     email = params[:email]
     password = params[:password]
-    #find_by(arg, *args)
-    #Finds the first record matching the specified conditions. 
-    #There is no implied ordering so if order matters, you should specify it yourself.
-    #If no record is found, returns nil
     user = User.find_by(user_email: email, user_password: password)
     render plain: user.present?
   end
