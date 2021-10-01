@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render plain: User.order(:id).map { |users| users.to_pleasant_string }.join("\n")
+    render plain: User.order(:id).map { |user| user.to_pleasant_string }.join("\n")
   end
 
   def show
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     name = params[:name]
     email = params[:email]
     password = params[:password]
-    new_user = User.create(
+    new_user = User.create!(
       user_name: name,
       user_email: email,
       user_password: password,
@@ -24,15 +24,7 @@ class UsersController < ApplicationController
     render plain: response_text
   end
   
-  def update
-    id = params[:id]
-    password = params[:password]
-    users = User.find(id)
-    users.save!
-    render plain: " Hey ! Users Password is Updated"
-  end
-  
-  def login
+   def login
     email = params[:email]
     password = params[:password]
     #find_by(arg, *args)
